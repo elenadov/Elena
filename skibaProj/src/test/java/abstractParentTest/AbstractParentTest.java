@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.SparePage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +16,7 @@ public class AbstractParentTest {
     WebDriver webDriver;
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected SparePage sparePage;
 
     @Before //this method will setUp our tests before every test
     public void setUp(){
@@ -27,6 +29,7 @@ public class AbstractParentTest {
 
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        sparePage = new SparePage(webDriver);
     }
 
     @After
@@ -36,5 +39,9 @@ public class AbstractParentTest {
 
     protected void checkExpectedResult(String message, boolean actualResult) {
         Assert.assertEquals(message, true, actualResult);
+    }
+
+    protected void checkExpectedResult(String message, boolean expectedResult, boolean actualResult) {
+        Assert.assertEquals(message, expectedResult, actualResult);
     }
 }
