@@ -88,4 +88,21 @@ public class ActionsWithOurElements {
         }
 
     }
+
+    public void SetStateToCheckbox(WebElement checkbox, String state){
+        boolean isStateCheck = state.toLowerCase().equals("check");
+        boolean isStateUnCheck = state.toLowerCase().equals("uncheck");
+        boolean isCheckBoxSelected = checkbox.isSelected();
+
+        if(isStateCheck || isStateUnCheck){
+            if((isStateCheck && isCheckBoxSelected)||(isStateUnCheck && !isCheckBoxSelected)){
+                logger.info("Checkbox is already in needed state");
+            }else if((isStateCheck && !isCheckBoxSelected)||(isStateUnCheck && isCheckBoxSelected)){
+                clickOnElement(checkbox);
+            }
+        }else{
+            logger.error("State should be only 'check' or 'uncheck'");
+            stopTestAndPrintMessage();
+        }
+    }
 }
