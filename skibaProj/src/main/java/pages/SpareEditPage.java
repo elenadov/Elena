@@ -26,7 +26,7 @@ public class SpareEditPage extends ParentPage {
     private WebElement buttonDelete;
 
     public SpareEditPage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, "/dictionary/spares/edit");
     }
 
 
