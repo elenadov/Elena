@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 
 public class ActionsWithOurElements {
     WebDriver webDriver;
@@ -35,10 +36,19 @@ public class ActionsWithOurElements {
             webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
 //            webDriverWait_10.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(webElement)));
             webElement.click();
-            logger.info("Element was clicked successfully");
+            logger.info("Element was clicked successfully" + getElementName(webElement));
         }catch(Exception e){
             stopTestAndPrintMessage();
         }
+    }
+
+    private String getElementName(WebElement webElement) {
+        String elementName = "";
+        if(webElement instanceof TypifiedElement){
+            elementName = " '" + ((TypifiedElement)webElement).getName() + "' "; //turn into necessary type of yandex
+            //yavnoe preobrazovanie tipov
+        }
+        return elementName;
     }
 
     public boolean isElementDisplayed(WebElement webElement) {

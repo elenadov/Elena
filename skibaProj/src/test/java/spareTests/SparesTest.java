@@ -15,8 +15,8 @@ public class SparesTest extends AbstractParentTest {
 
         homePage.checkCurrentURL();
         homePage.checkIsAvatarPresent();
-        homePage.clickOnMenuDictionary();
-        homePage.clickOnSubMenuSpares();
+//        homePage.clickOnMenuDictionary();
+//        homePage.clickOnSubMenuSpares();
 
         sparePage.checkCurrentURL();
         sparePage.deleteSpareUntilPresent(spareName);
@@ -35,13 +35,16 @@ public class SparesTest extends AbstractParentTest {
     public void addNewSpare1(){
         loginPage.fillingLoginFormAndSubmitIt("Student", "909090");
 
+        homePage.checkCurrentURL();
         homePage.checkIsAvatarPresent();
-        homePage.clickOnMenuDictionary();
-        homePage.clickOnSubMenuSpares();
+//        homePage.clickOnMenuDictionary();
+//        homePage.clickOnSubMenuSpares();
+        homePage.leftMenu.clickOnMenuDictionary();
+        homePage.leftMenu.clickOnSubmenuSpare();
 
         sparePage.clickOnAddButton();
 
-        spareEditPage.enterSpareNameIntoTextField("Test");
+        spareEditPage.enterSpareNameIntoTextField(spareName);
         spareEditPage.clickOnClosedDropdown();
         spareEditPage.clickOnValueOfDropdown();
         spareEditPage.clickOnSubmitButton();
