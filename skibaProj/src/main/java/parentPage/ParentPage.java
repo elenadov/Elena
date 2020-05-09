@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import pages.pageElements.WebDriverAwareDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 
 public class ParentPage {
@@ -21,7 +23,16 @@ public class ParentPage {
     public ParentPage(WebDriver webDriver, String partURL) {
         this.webDriver = webDriver;
         baseURL = configProperties.base_url();
-        PageFactory.initElements(webDriver, this);
+
+//        PageFactory.initElements(webDriver, this);
+//        PageFactory.initElements(
+//        new HtmlElementDecorator(
+//                new HtmlElementLocatorFactory(webDriver))
+//                ,this);
+
+        PageFactory.initElements(
+                new WebDriverAwareDecorator(
+                        new HtmlElementLocatorFactory(webDriver),webDriver),this);
         actionsWithOurElements = new ActionsWithOurElements(webDriver);
 //        will initialize (after creation of object in AbstractParentTest) @FindBy annotation creation of variables
 //        "This" means initialize me variable from the page where the action was made

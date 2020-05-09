@@ -4,10 +4,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SpareEditPage;
@@ -15,6 +19,7 @@ import pages.SparePage;
 
 import javax.xml.ws.WebServiceProvider;
 import java.io.File;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class AbstractParentTest {
@@ -52,8 +57,19 @@ public class AbstractParentTest {
         } else if("ie".equalsIgnoreCase(browser)){
             WebDriverManager.iedriver().arch32().setup();//32-bit
             return new InternetExplorerDriver();
+        } else if ("remote".equals(browser)){
+            DesiredCapabilities cap=new DesiredCapabilities();
+            cap.setBrowserName("chrome");
+            cap.setPlatform(Platform.WINDOWS);
+            cap.setVersion("79");
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.merge(cap);
+            webDriver = new RemoteWebDriver(
+                    new URL("http://localhost:4444/wd/hub"),
+                    chromeOptions);
+            return webDriver;
         } else {
-            throw new Exception("Check browser variable"); //neyavnaia obrabotka of exception
+            throw new Exception("Check browser var ");
         }
     }
 
