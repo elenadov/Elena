@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,31 +30,37 @@ public class SpareEditPage extends ParentPage {
         super(webDriver, "/dictionary/spares/edit");
     }
 
-
+    @Step
     public void enterSpareNameIntoTextField(String spareName) {
         actionsWithOurElements.enterTextIntoInput(spareNameInput, spareName);
     }
 
+    @Step
     public void clickOnClosedDropdown() {
         actionsWithOurElements.clickOnElement(spareTypeDD);
     }
 
+    @Step
     public void clickOnValueOfDropdown() {
         actionsWithOurElements.clickOnElement(valueOfDropdown);
     }
 
+    @Step
     public void clickOnButtonCreate() {
         actionsWithOurElements.clickOnElement(buttonCreate);
     }
 
+    @Step
     public void selectSpareTypeFromDropdown(String spareType) {
         actionsWithOurElements.selectVisibleTextFromDDByJava(spareTypeDD, spareType);
     }
 
+    @Step
     public void clickOnSubmitButton() {
         actionsWithOurElements.clickOnElement(submitButton);
     }
 
+    @Step
     public void clickOnDeleteButton() {
         actionsWithOurElements.clickOnElement(buttonDelete);
     }

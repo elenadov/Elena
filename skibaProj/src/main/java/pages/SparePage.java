@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,14 +16,17 @@ public class SparePage extends ParentPage {
         super(webDriver, "/dictionary/spares");
     }
 
+    @Step
     public void clickOnAddButton() {
         actionsWithOurElements.clickOnElement(buttonAdd);
     }
 
+    @Step
     public boolean isSpareInList(String spareName) {
         return actionsWithOurElements.isElementDisplayed(".//*[text()='" + spareName + "']");
     }
 
+    @Step
     public void deleteSpareUntilPresent(String spareName) {
         int counter = 0;
         SpareEditPage spareEditPage = new SpareEditPage(webDriver);
@@ -37,6 +41,7 @@ public class SparePage extends ParentPage {
         }
     }
 
+    @Step
     private void clickOnSpare(String spareName) {
         actionsWithOurElements.clickOnElement(".//*[text()='" + spareName + "']");
     }

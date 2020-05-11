@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class LoginPage extends ParentPage {
         super(webDriver, "/login");
     }
 
+    @Step
     public void openPage() {
         try{
             webDriver.get("http://v3.test.itpmgroup.com");
@@ -31,6 +33,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        WebElement inputLogin = webDriver.findElement(By.name("_username"));
 //        inputLogin.clear();
@@ -39,6 +42,7 @@ public class LoginPage extends ParentPage {
         actionsWithOurElements.enterTextIntoInput(inputLogin, login);
     }
 
+    @Step
     public void enterPassIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.id("password"));
 //        inputPassword.clear();
@@ -47,6 +51,7 @@ public class LoginPage extends ParentPage {
         actionsWithOurElements.enterTextIntoInput(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonVhod() {
 //        WebElement buttonVhod = webDriver.findElement(By.tagName("button"));
 //        buttonVhod.click();
@@ -54,6 +59,7 @@ public class LoginPage extends ParentPage {
         actionsWithOurElements.clickOnElement(buttonVhod);
     }
 
+    @Step
     public boolean isInputLoginPresent(){
         try {
 //            WebElement inputLogin = webDriver.findElement(By.name("_username"));
@@ -63,6 +69,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public boolean isInputPasswordPresent(){
         try {
 //            WebElement inputPassword = webDriver.findElement(By.id("password"));
@@ -72,6 +79,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void fillingLoginFormAndSubmitIt(String login, String password) {
         openPage();
         enterLoginIntoInputLogin(login);

@@ -1,6 +1,7 @@
 package LoginTest;
 
 import abstractParentTest.AbstractParentTest;
+import io.qameta.allure.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,6 +11,8 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class) //will run test with different parameters
 
+@Epic("Allure example")
+@Feature("Junit 4 support")
 public class LoginWithPageObjecttTestWithParams extends AbstractParentTest {
 
     String login, pass;
@@ -29,6 +32,13 @@ public class LoginWithPageObjecttTestWithParams extends AbstractParentTest {
         );
     }
 
+    @Description("Some detailed test description")
+    @Story("Base support for bdd annotation")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void unValidLogin(){
         loginPage.openPage();
